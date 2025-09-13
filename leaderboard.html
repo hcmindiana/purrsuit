@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>
+Purr-suit
+</title>
+<style>
+	@font-face 
+	{
+		font-family: font;
+		src: url("8-Bit Madness.ttf");
+	}
+	body
+	{
+		font-family: font;
+	}
+	table
+	{
+		background-color: lightGreen;
+		border: 10px solid transparent;
+		width: 900px;
+		margin: auto;
+		font-family: font;
+		font-size: 30px;
+		border-image: url("startButton_hover.png") 30 stretch;
+	}
+	#againBtn
+	{
+		background-image: url("restartButton_static.png");
+		background-size: cover;
+		height: 120px;
+		width: 500px;
+		margin: auto;
+		display: block;
+		margin-top: 20vh;
+	}
+	#againBtn:hover
+	{
+		background-image: url("restartButton_hover.png");
+	}
+</style>
+</head>
+<body>
+	<table>
+
+        <!--Adds header if there are scores-->
+        {% if topscores is defined and topscores|length > 0 %}
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        {% endif %}
+        <tbody>
+        <!--Displays high scores-->
+        {% for score in topscores %}
+            <tr>
+            	<td>{{ score.name }}</td>
+            	<td>{{ score.score }}</td>
+            </tr>
+        <!--Displays this if there are no scores-->
+        {% else %}
+            <tr>
+                <td>No scores yet!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<div id="againBtn" href="computron.pythonanywhere.com/leaderboard"></div>
+</body>
+</html>
